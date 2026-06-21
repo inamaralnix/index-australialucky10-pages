@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>澳洲幸运10 · 数据查询与对照页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f0f7fa;
+      color: #1b3b4f;
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+
+    .wrapper {
+      max-width: 960px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 2.5rem;
+      box-shadow: 0 12px 30px rgba(0, 60, 80, 0.08);
+      overflow: hidden;
+      padding: 2rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #0a3b4c;
+      border-left: 5px solid #24b3a0;
+      padding-left: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: #3f6a7a;
+      margin-bottom: 2rem;
+      padding-left: 1.2rem;
+      border-left: 2px solid #b0d9d1;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin: 1.8rem 0 2.2rem;
+    }
+
+    @media (min-width: 600px) {
+      .grid-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #f3fafc;
+      border-radius: 1.5rem;
+      padding: 1.4rem 1.2rem;
+      border: 1px solid #cee6eb;
+      transition: 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 40, 50, 0.02);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      border-color: #6ec7bb;
+      box-shadow: 0 6px 14px rgba(36, 179, 160, 0.08);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #0f4a5c;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card h3::before {
+      content: "▹";
+      color: #24b3a0;
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #2b586b;
+      flex: 1;
+    }
+
+    .card small {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      color: #4e7c8c;
+      border-top: 1px dashed #b6d6de;
+      padding-top: 0.5rem;
+    }
+
+    .scene-list {
+      background: #e5f3f0;
+      border-radius: 1.4rem;
+      padding: 1.3rem 1.5rem;
+      margin: 1.8rem 0;
+    }
+
+    .scene-list h2 {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #084454;
+      margin-bottom: 0.7rem;
+    }
+
+    .scene-list ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+    }
+
+    .scene-list li {
+      font-size: 0.9rem;
+      background: white;
+      padding: 0.25rem 0.9rem;
+      border-radius: 30px;
+      color: #1d5366;
+      border: 1px solid #b2d3d9;
+    }
+
+    .quote-block {
+      background: #f9fdfe;
+      border: 1px solid #d4e6eb;
+      border-radius: 1.8rem;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0 1.6rem;
+      position: relative;
+    }
+
+    .quote-block p {
+      font-size: 0.95rem;
+      color: #1f4c5d;
+    }
+
+    .quote-block .link-sentence {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .quote-block a {
+      color: #127a86;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 2px solid #b5ddd6;
+      padding-bottom: 0.05rem;
+      transition: 0.15s;
+    }
+
+    .quote-block a:hover {
+      border-bottom-color: #127a86;
+    }
+
+    .faq-mini {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin: 1.8rem 0 0.5rem;
+    }
+
+    .faq-item {
+      background: white;
+      border-left: 4px solid #24b3a0;
+      padding: 0.8rem 1rem;
+      border-radius: 0 1rem 1rem 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .faq-item strong {
+      color: #0e4354;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-item span {
+      font-size: 0.85rem;
+      color: #346575;
+    }
+
+    .footnote {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #cce0e5;
+      font-size: 0.8rem;
+      color: #507f8f;
+      text-align: center;
+    }
+
+    .btn-soft {
+      display: inline-block;
+      background: #e3f1ef;
+      color: #095563;
+      border: 1px solid #9fcfc4;
+      border-radius: 40px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 450;
+      text-decoration: none;
+      transition: 0.15s;
+    }
+
+    .btn-soft:hover {
+      background: #d0ece4;
+      border-color: #24b3a0;
+    }
+
+    .flex-end {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <h1>澳洲幸运10 · 数据对照</h1>
+  <div class="hero-sub">日常查询 · 延伸阅读 · 理性参考</div>
+
+  <!-- 摘要卡片组 -->
+  <div class="grid-cards">
+    <div class="card">
+      <h3>开奖摘要</h3>
+      <p>每期结果以数字序列呈现，方便与历史走势对照。页面聚焦于清晰展示当期号码与基本统计，不附加预测或推荐。</p>
+      <small>可结合个人记录进行比对</small>
+    </div>
+    <div class="card">
+      <h3>频次参考</h3>
+      <p>提供号码出现频率与冷热分布，帮助使用者从统计角度理解近期数据，所有数据均来自公开信息。</p>
+      <small>所有图表仅供参考</small>
+    </div>
+    <div class="card">
+      <h3>延伸阅读</h3>
+      <p>整理常见术语、玩法简介与注意事项，适合希望快速了解玩法框架或查阅名词的新老用户。</p>
+      <small>内容保持中立客观</small>
+    </div>
+    <div class="card">
+      <h3>移动适配</h3>
+      <p>界面针对手机与平板优化，卡片布局、字体大小与按钮间距均经过调整，查询体验流畅。</p>
+      <small>随时随地打开对照</small>
+    </div>
+  </div>
+
+  <!-- 场景与使用建议 -->
+  <div class="scene-list">
+    <h2>常见使用场景</h2>
+    <ul>
+      <li>查看每日开奖结果</li>
+      <li>对照走势与冷热号</li>
+      <li>了解玩法基本规则</li>
+      <li>收藏作为延伸阅读入口</li>
+      <li>分享给有同样需要的朋友</li>
+    </ul>
+  </div>
+
+  <!-- 自然嵌入链接的句子段落 -->
+  <div class="quote-block">
+    <p>如果你平时习惯在手机或电脑上快速核对开奖数据，不妨把 <a href="https://index-australialucky10.com">澳洲幸运10</a> 放在书签里。页面保持简洁，没有多余跳转，打开即可看到最新一期结果与历史趋势。适合每日花几分钟简单浏览，也适合在需要回顾往期号码时作为对照工具。</p>
+    <div class="link-sentence">
+      对于希望进一步比较不同时段走势的用户，可以直接从 <a href="https://index-australialucky10.com">澳洲幸运10</a> 页面进入数据面板，所有数字均以表格与卡片形式呈现，支持快速定位。
+    </div>
+  </div>
+
+  <!-- 可信但克制的访问说明 + 提示 -->
+  <div style="background: #e7f3f1; border-radius: 1.5rem; padding: 1.2rem 1.5rem; margin: 1.5rem 0;">
+    <p style="font-size: 0.9rem; color: #174e5f; margin-bottom: 0.3rem;"><strong>使用提示</strong> · 本页仅作为信息汇总与对照参考，所有数据均来自公开渠道。开奖结果具有随机性，请理性看待历史频率与走势。页面不含任何诱导性内容，也不提供购彩建议。</p>
+    <div class="flex-end">
+      <span class="btn-soft">适用于日常查询</span>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <div class="faq-item">
+      <strong>❓ 页面多久更新一次？</strong>
+      <span>开奖后数分钟内同步更新结果，保持与官方公布时间基本一致。如遇网络延迟可稍后刷新。</span>
+    </div>
+    <div class="faq-item">
+      <strong>❓ 走势图可以保存吗？</strong>
+      <span>数据表格与卡片均支持截图保存，方便离线对照。页面未设置下载限制，但请勿用于商业再分发。</span>
+    </div>
+    <div class="faq-item">
+      <strong>❓ 是否需要注册或登录？</strong>
+      <span>直接打开页面即可浏览所有内容，无需任何注册、登录或个人信息。完全免费，无需下载额外应用。</span>
+    </div>
+  </div>
+
+  <!-- 结尾 -->
+  <div class="footnote">
+    仅供个人参考 · 数据来源公开 · 请理性对待
+  </div>
+
+</div>
+</body>
+</html>
