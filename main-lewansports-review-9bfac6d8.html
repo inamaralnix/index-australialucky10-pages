@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐玩体育 · 知识库入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f4f6;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e2b3a;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* --- hero 简明指南区 --- */
+        .hero-guide {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.5rem 2.2rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e8ecf0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .hero-text {
+            flex: 2 1 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #1e2b3a;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-text p {
+            font-size: 1.05rem;
+            color: #3d4e60;
+            max-width: 580px;
+        }
+
+        .hero-badge {
+            background: #eef2f7;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #2f4052;
+            display: inline-block;
+            border: 1px solid #dce3ea;
+            margin-top: 1rem;
+        }
+
+        .hero-highlight {
+            flex: 1 1 200px;
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            border-left: 5px solid #3b6e9c;
+        }
+
+        .hero-highlight span {
+            font-weight: 500;
+            color: #1e2b3a;
+        }
+
+        .hero-highlight a {
+            color: #3b6e9c;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .hero-highlight a:hover {
+            color: #1f4d72;
+        }
+
+        /* --- 目录感卡片布局（两列） --- */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2.2rem;
+        }
+
+        @media (max-width: 680px) {
+            .directory-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e4e9ef;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1a2b3c;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background: #3b6e9c;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .card p, .card li {
+            color: #2c3f52;
+            font-size: 0.98rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.4rem;
+        }
+
+        .card ul li {
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: '·';
+            position: absolute;
+            left: 0.2rem;
+            color: #3b6e9c;
+            font-weight: 700;
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+
+        .card .info-tag {
+            display: inline-block;
+            background: #eef3f9;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #2f4c6a;
+            border: 1px solid #dae1ea;
+            margin-right: 0.5rem;
+        }
+
+        /* --- 提示区 --- */
+        .notice-area {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.2rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .notice-icon {
+            background: #e9eef5;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            color: #2c4b6e;
+        }
+
+        .notice-content {
+            flex: 1;
+        }
+
+        .notice-content h3 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .notice-content p {
+            color: #2e4358;
+            font-size: 0.96rem;
+        }
+
+        .notice-content a {
+            color: #3b6e9c;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+
+        .notice-content a:hover {
+            color: #1f4d72;
+        }
+
+        /* --- 相关信息区 / FAQ 摘要 --- */
+        .related-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2rem 1.8rem;
+            border: 1px solid #e4e9ef;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            margin-bottom: 1.8rem;
+        }
+
+        .related-section h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #1a2b3c;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .related-section h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e3e9f0;
+            margin-left: 0.8rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .faq-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            font-size: 0.98rem;
+            color: #1f3347;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            font-size: 0.93rem;
+            color: #3d5369;
+        }
+
+        .faq-a a {
+            color: #3b6e9c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .faq-a a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- footer 辅助 --- */
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #5a6f84;
+            padding: 1.2rem 0 0.2rem;
+            border-top: 1px solid #e0e6ed;
+            margin-top: 0.8rem;
+        }
+
+        .footer-note a {
+            color: #3b6e9c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e3e9f0;
+            margin: 1.2rem 0;
+        }
+
+        .inline-link {
+            color: #3b6e9c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .inline-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- hero 简明指南 + 访问提醒 -->
+    <div class="hero-guide">
+        <div class="hero-text">
+            <h1>乐玩 · 简明指南</h1>
+            <p>从基础知识到实用提醒，这里汇集了围绕「乐玩体育」的常见问题与方向感。无论你初次接触还是想回顾要点，都可以把它当作一个轻量知识库入口。</p>
+            <div class="hero-badge">📘 目录式索引 · 温和指引</div>
+        </div>
+        <div class="hero-highlight">
+            <span>🏷️ 访问提醒</span><br>
+            始终通过可靠路径访问 <a href="https://main-lewansports.com">乐玩体育</a>，并留意环境与链接变化。
+        </div>
+    </div>
+
+    <!-- 目录感卡片：两列 -->
+    <div class="directory-grid">
+        <!-- 卡片1：说明区 - 平台特征 -->
+        <div class="card">
+            <div class="card-title">平台特征速览</div>
+            <p>乐玩体育围绕体育内容与互动体验，提供了信息聚合与参与路径。以下是一些常见关注点：</p>
+            <ul>
+                <li>体育资讯与动态内容更新</li>
+                <li>赛事相关的信息框架</li>
+                <li>用户可自定义的偏好提醒</li>
+                <li>多终端适配与访问方式</li>
+            </ul>
+            <p style="margin-top: 0.8rem; font-size: 0.92rem; color: #3f556b;">
+                <span class="info-tag">指南</span> 详情以实际页面为准。
+            </p>
+        </div>
+
+        <!-- 卡片2：说明区 - 场景与建议 -->
+        <div class="card">
+            <div class="card-title">使用场景与建议</div>
+            <p>根据不同习惯与需求，可以选择适合自己的节奏来了解：</p>
+            <ul>
+                <li>通过 <a href="https://main-lewansports.com" class="inline-link">乐玩体育</a> 浏览核心内容模块</li>
+                <li>关注日常信息流与分类索引</li>
+                <li>收藏常用页面便于再次访问</li>
+                <li>留意界面引导与提示文字</li>
+            </ul>
+            <p style="margin-top: 0.8rem; font-size: 0.92rem; color: #3f556b;">
+                <span class="info-tag">建议</span> 保持浏览器与系统为较新版本。
+            </p>
+        </div>
+    </div>
+
+    <!-- 提示区（访问提醒 + 安全提示） -->
+    <div class="notice-area">
+        <div class="notice-icon">📌</div>
+        <div class="notice-content">
+            <h3>访问提示 · 信息辨别</h3>
+            <p>
+                请通过官方或可信渠道访问 <a href="https://main-lewansports.com">乐玩体育</a>，注意核对链接拼写。
+                避免在公共网络下保存敏感信息，定期清理浏览缓存。如遇到页面异常或引导跳转，
+                建议先验证来源再操作。温和访问，保持信息意识。
+            </p>
+        </div>
+    </div>
+
+    <!-- 相关信息区 + FAQ 摘要 -->
+    <div class="related-section">
+        <h2>相关信息与常见问题摘要</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-q">如何快速找到内容分类？</div>
+                <div class="faq-a">通常在首页或主导航中设有分类入口。你可以通过 <a href="https://main-lewansports.com">乐玩体育</a> 的导航栏或菜单图标展开浏览。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">是否支持移动端访问？</div>
+                <div class="faq-a">是的，页面针对不同屏幕尺寸做了适配。移动端建议使用系统自带浏览器或主流第三方浏览器。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">链接发生变化怎么办？</div>
+                <div class="faq-a">建议通过初始可靠渠道确认最新地址。你也可以留意页面底部的更新说明或相关公告区域。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">内容更新频率如何？</div>
+                <div class="faq-a">信息通常保持动态更新，具体节奏视内容模块而定。定期访问可获取较新动态。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 额外相关信息区（轻量） -->
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; background: #ffffff; border-radius: 20px; padding: 1.2rem 1.8rem; border: 1px solid #e4e9ef; margin-bottom: 1.5rem; align-items: center;">
+        <div style="color: #2c445c; font-size: 0.96rem;">
+            <span style="font-weight: 600;">📋 相关参考</span> · 如果你对体育内容感兴趣，也可以关注其他信息渠道，交叉对比。
+        </div>
+        <div style="font-size: 0.9rem; color: #446688;">
+            <a href="https://main-lewansports.com" style="color: #3b6e9c; text-decoration: none; font-weight: 500;">乐玩体育</a> 
+            <span style="color: #8aa0b6; margin: 0 0.5rem;">/</span> 
+            <span style="color: #5b738c;">知识库入口</span>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <span>本页为独立介绍页，内容仅供参考。具体功能与信息以 <a href="https://main-lewansports.com">乐玩体育</a> 实际页面为准。</span><br>
+        <span style="font-size: 0.8rem; color: #748a9e;">保持清醒 · 温和探索</span>
+    </div>
+
+</div>
+</body>
+</html>
